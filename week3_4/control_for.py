@@ -11,13 +11,18 @@
 思考提示: 如何在循环中判断一个字符是否是元音字母？如何处理大小写问题？
 """
 
-def letter_counter(words: str):
+def count_vowels(text: str):
+    # 使用字符串作为查找对象，更简洁
+    # 在大量数据下，in 操作在集合中的查找速度会比列表更快
+    vowels = "aeiou"
     count = 0
-    for word in words:
-        if word.lower() in ['a', 'e', 'i', 'o', 'u']:
+    for char in text:
+        if char.lower() in vowels:
             count += 1
     return count
 
 if __name__ == '__main__':
-    words = input("输入一段字符串：")
-    print(letter_counter(words))
+    words = input("请输入一段英文句子或单词：")
+    vowel_count = count_vowels(words)
+    # 优化输出格式
+    print(f"您输入的句子中共有 {vowel_count} 个元音字母。")

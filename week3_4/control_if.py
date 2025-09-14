@@ -20,20 +20,35 @@
 
 如果用户输入的不是0-100之间的数字，程序应输出错误提示。
 """
-def grade_level(score):
+def get_grade_level(score):
+    # 1. 首先进行输入验证
+    if not 0 <= score <= 100:
+        return "错误：请输入0到100之间的成绩。"
+
+    # 2. 简化逻辑判断
+    """
+    类似 80 <= score < 90 的判断可以简化。因为程序是从上往下执行的，
+    如果能进入这个 elif，说明 score >= 90 必然不成立，
+    所以我们只需要判断 score >= 80 即可。
+    """
     if score >= 90:
-        return 'A'
-    elif 80 <= score < 90:
-        return 'B'
-    elif 70 <= score < 80:
-        return 'C'
-    elif 60 <= score < 70:
-        return 'D'
+        return '等级A'
+    elif score >= 80: # 无需检查 < 90
+        return '等级B'
+    elif score >= 70: # 无需检查 < 80
+        return '等级C'
+    elif score >= 60: # 无需检查 < 70
+        return '等级D'
     else:
-        return 'F'
+        return '等级F'
 
 if __name__ == '__main__':
-    score = int(input("输入你的成绩："))
-    print(grade_level(score))
+    try:
+        score_input = int(input("输入你的成绩："))
+        grade = get_grade_level(score_input)
+        print(grade)
+    except ValueError:
+        # 处理用户输入非数字的情况
+        print("错误：请输入一个有效的整数。")
 
 
