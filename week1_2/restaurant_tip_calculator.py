@@ -20,21 +20,25 @@
 2. 询问用户，支付的小费占总金额的百分比
 3. 计算小费金额和总支出金额
 """
-def cost():
+def cost_optimized():
+    # 将提示直接放入input函数
+    dinner_pay_str = input("请输入晚餐总金额: ")
+    tips_str = input("请输入小费比例(%): ")
 
-    print("您今晚的晚餐总额是多少?")
-    dinner_pay = input()
+    # 转换为数字
+    dinner_pay = float(dinner_pay_str)
+    tips_percentage = float(tips_str)
 
-    print("小费占比?")
-    tips = input()
-    tips_pay = float(dinner_pay) * float(tips) / 100
-    total = float(dinner_pay) + tips_pay
-    print("-----bill------")
-    print(f"账单金额：${dinner_pay}")
-    print(f"小费比例：{tips}%")
-    print(f"小费金额：${tips_pay}")
-    print(f"总计金额：${total}")
+    # 计算
+    tips_pay = dinner_pay * tips_percentage / 100
+    total = dinner_pay + tips_pay
 
+    print("-----账单详情------")
+    # 使用 :.2f 格式化输出，保留两位小数
+    print(f"账单金额：${dinner_pay:.2f}")
+    print(f"小费比例：{tips_percentage}%")
+    print(f"小费金额：${tips_pay:.2f}")
+    print(f"总计金额：${total:.2f}")
 
 if __name__ == '__main__':
-    cost()
+    cost_optimized()

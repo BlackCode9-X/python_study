@@ -19,15 +19,21 @@ second = 3661 % 3600 % 60 = 1
 
 """
 
-def time_cover():
-    print("总秒数：")
-    total_sec = int(input())
-    hours = total_sec // 3600
-    minutes = total_sec % 3600 // 60
-    seconds = total_sec % 3600 % 60
-    print(f"总秒数 {total_sec}秒 = {hours}小时，{minutes}分钟，{seconds}秒")
+def time_cover_optimized():
+    total_sec = int(input("请输入总秒数: "))
 
+    # 首先计算小时
+    hours = total_sec // 3600
+    # 计算除去小时后剩下的秒数
+    remaining_seconds = total_sec % 3600
+
+    # 在剩下的秒数里计算分钟
+    minutes = remaining_seconds // 60
+    # 最后计算剩下的秒数
+    seconds = remaining_seconds % 60
+
+    print(f"{total_sec}秒 = {hours}小时, {minutes}分钟, {seconds}秒")
 
 if __name__ == '__main__':
-    time_cover()
+    time_cover_optimized()
 
