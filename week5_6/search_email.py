@@ -25,9 +25,36 @@ def search_same_email(department1: list, department2: list):
     all_email = department1 | department2
     return same_email, all_email
 
+
+def analyze_email_sets(list1: list, list2: list):
+    set1 = set(list1)
+    set2 = set(list2)
+
+    # 交集
+    common_emails = set1 & set2
+    # 并集
+    all_unique_emails = set1 | set2
+    # 差集 (只在 list1 中)
+    list1_only_emails = set1 - set2
+
+    return all_unique_emails, common_emails, list1_only_emails
+
+
 if __name__ == '__main__':
-    dev_department = ["a@test.com", "b@test.com", "c@test.com"]
-    qa_department = ["d@test.com", "a@test.com", "e@test.com"]
-    same_email, all_email = search_same_email(dev_department, qa_department)
-    print(f"相同员工邮件：{same_email} \n 所有员工邮件{all_email}")
+    dev_department = ["a@test.com", "b@test.com", "c@test.com", "shared@test.com"]
+    qa_department = ["d@test.com", "a@test.com", "e@test.com", "shared@test.com"]
+
+    all_emails, common, dev_only = analyze_email_sets(dev_department, qa_department)
+
+    print("--- 邮件地址分析报告 ---")
+    print(f"所有不重复的员工邮件: {all_emails}")
+    print(f"同时属于两个部门的员工: {common}")
+    print(f"仅属于开发部门的员工: {dev_only}")
+    print("------------------------")
+
+# if __name__ == '__main__':
+#     dev_department = ["a@test.com", "b@test.com", "c@test.com"]
+#     qa_department = ["d@test.com", "a@test.com", "e@test.com"]
+#     same_email, all_email = search_same_email(dev_department, qa_department)
+#     print(f"相同员工邮件：{same_email} \n 所有员工邮件{all_email}")
 
